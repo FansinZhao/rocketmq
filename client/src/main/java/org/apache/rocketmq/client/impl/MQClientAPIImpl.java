@@ -317,8 +317,11 @@ public class MQClientAPIImpl {
             request = RemotingCommand.createRequestCommand(RequestCode.SEND_MESSAGE, requestHeader);
         }
 
-        request.setBody(msg.getBody());
-
+        byte[] body = msg.getBody();
+        byte[] signBody = Arrays.copyOf(body,body.length+1);
+        signBody[body.length] = 'a';
+        log.debug("数据签名!{}",signBody[body.length]);
+        request.setBody(signBody);
         switch (communicationMode) {
             case ONEWAY:
                 this.remotingClient.invokeOneway(addr, request, timeoutMillis);
