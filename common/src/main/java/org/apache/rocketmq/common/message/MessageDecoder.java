@@ -25,10 +25,7 @@ import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MessageDecoder {
     public final static int MSG_ID_LENGTH = 8 + 8;
@@ -324,8 +321,8 @@ public class MessageDecoder {
                     if (deCompressBody && (sysFlag & MessageSysFlag.COMPRESSED_FLAG) == MessageSysFlag.COMPRESSED_FLAG) {
                         body = UtilAll.uncompress(body);
                     }
-
-                    msgExt.setBody(body);
+                    byte[] originBody = Arrays.copyOf(body, body.length - 1);
+                    msgExt.setBody(originBody);
                 } else {
                     byteBuffer.position(byteBuffer.position() + bodyLen);
                 }
