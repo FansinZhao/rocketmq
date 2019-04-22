@@ -45,7 +45,7 @@ public class Producer {
          * </pre>
          */
         producer.setVipChannelEnabled(false);
-        producer.setNamesrvAddr("192.168.2.228:9876");
+        producer.setNamesrvAddr("192.168.153.1:9876");
         /*
          * Launch the instance.
          */

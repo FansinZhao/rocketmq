@@ -49,7 +49,7 @@ public class Consumer {
          * </pre>
          */
         consumer.setVipChannelEnabled(false);
-        consumer.setNamesrvAddr("192.168.2.228:9876");
+        consumer.setNamesrvAddr("192.168.153.1:9876");
         /*
          * Specify where to start in case the specified consumer group is a brand new one.
          */
